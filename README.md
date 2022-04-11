@@ -81,16 +81,73 @@ pm.test("u_salary_1_5_year", function () {
 ### `http://162.55.220.72:5005/object_info_3`
 1. Отправить запрос.
 2. Статус код 200
+```
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+```
 3. Спарсить response body в json.
+```
+let jsonData = pm.response.json ()
+```
 4. Спарсить request.
+```
+let reqData = pm.request.url.query.toObject ();
+let salaryInt = parseInt(reqData.salary)
+```
 5. Проверить, что name в ответе равно name s request (name забрать из request.)
+```
+pm.test("Name = ParamsName", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.name).to.eql(reqData.name);
+});
+```
 6. Проверить, что age в ответе равно age s request (age забрать из request.)
+```
+pm.test("Age = ParamsAge", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.age).to.eql(reqData.age);
+});
+```
 7. Проверить, что salary в ответе равно salary s request (salary забрать из request.)
+```
+pm.test("Salary = ParamsSalary", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.salary).to.eql(salaryInt);
+});
+```
 8. Вывести в консоль параметр family из response.
+```
+console.log(respData.family);
+```
 9. Проверить, что у параметра dog есть параметры name.
+```
+pm.test("Dog has a name", function () {
+    var respData = pm.response.json();
+    pm.expect(respData.family.pets.dog).to.have.property("name");
+});
+```
 10. Проверить, что у параметра dog есть параметры age.
+```
+pm.test("Dog has an age", function () {
+    var respData = pm.response.json();
+    pm.expect(respData.family.pets.dog).to.have.property("age");
+});
+```
 11. Проверить, что параметр name имеет значение Luky.
+```
+pm.test("Dog has name Luky", function () {
+    var respData = pm.response.json();
+    pm.expect(respData.family.pets.dog.name).to.eql("Luky");
+});
+```
 12. Проверить, что параметр age имеет значение 4.
+```
+pm.test("Dog has age 4", function () {
+    var respData = pm.response.json();
+    pm.expect(respData.family.pets.dog.age).to.eql(4);
+});
+```
 
 ### `http://162.55.220.72:5005/object_info_4`
 1. Отправить запрос.
