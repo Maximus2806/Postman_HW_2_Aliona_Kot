@@ -239,3 +239,8 @@ pm.environment.set("salary", jsonData.salary);
 ```
 
 21. Написать цикл который выведет в консоль по порядку элементы списка из параметра salary.
+```
+for (let i of jsonData.salary) {
+    console.log(i);
+}
+```
