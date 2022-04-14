@@ -352,3 +352,15 @@ pm.test("u_salary_5_years=salary*4.2", function () {
 });
 ```
 22. ***Написать цикл который выведет в консоль по порядку элементы списка из параметра person.
+```
+for(let DATA in jsonData.person) {
+   if(typeof(jsonData.person[DATA]) == "object"){
+       for(let i = 0; i < Object.keys(jsonData.person[DATA]).length; i++){
+           console.log(jsonData.person[DATA][i]);
+       }
+   }
+   else if(typeof(jsonData.person[DATA]) != "object") {
+        console.log(jsonData.person[DATA]);
+   }
+}
+```
